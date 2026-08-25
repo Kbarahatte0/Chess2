@@ -1,0 +1,17 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Chess V1",
+  "orientation": "portrait",
+  "scope": "/Chess2/",
+  "short_name": "Chess",
+  "start_url": "/Chess2/",
+  "theme_color": "#ffffff",
+  "id": "/chess2/",
+  "description": "Play Chess against a computer opponent.",
+  "lang": "en",
+  "categories": [
+    "games"
+  ]
+}
