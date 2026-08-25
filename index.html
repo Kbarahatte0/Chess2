@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Chess V1</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Checkora</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
@@ -12,139 +17,361 @@
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <header class="topbar">
-            <div class="brand">
-                <div class="brand-icon">♟</div>
+    <!-- HEADER -->
 
-                <div>
-                    <h1>CHESS</h1>
-                    <p>Two Player</p>
-                </div>
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ♟
             </div>
 
-            <button id="newGameBtn" class="new-game-btn">
-                New Game
-            </button>
-        </header>
+            <div>
+                <h1>CHECKORA</h1>
+                <p>Chess vs Bot</p>
+            </div>
+
+        </div>
 
 
-        <main class="game-layout">
+        <button
+            id="newGameBtn"
+            class="new-game-btn"
+        >
+            New Game
+        </button>
 
-            <!-- LEFT PLAYER -->
-
-            <section class="player-card black-player">
-
-                <div class="player-avatar black-avatar">
-                    ♚
-                </div>
-
-                <div class="player-info">
-                    <span>BLACK</span>
-                    <strong id="blackStatus">Your Turn</strong>
-                </div>
-
-            </section>
+    </header>
 
 
-            <!-- GAME AREA -->
+    <!-- BOT LEVEL -->
 
-            <section class="game-area">
+    <section class="settings-card">
 
-                <div class="game-header">
+        <div class="setting-row">
 
-                    <div>
-                        <span class="game-label">LOCAL GAME</span>
+            <div class="setting-title">
+                <span>BOT LEVEL</span>
+                <strong id="difficultyLabel">Hard</strong>
+            </div>
 
-                        <h2 id="turnText">
-                            White's Turn
-                        </h2>
-                    </div>
+            <div class="button-group">
 
-                    <div id="statusBadge" class="status-badge">
-                        PLAYING
-                    </div>
+                <button
+                    class="difficulty-btn"
+                    data-level="easy"
+                >
+                    Easy
+                </button>
 
-                </div>
+                <button
+                    class="difficulty-btn"
+                    data-level="medium"
+                >
+                    Medium
+                </button>
 
+                <button
+                    class="difficulty-btn active"
+                    data-level="hard"
+                >
+                    Hard
+                </button>
 
-                <!-- CHESS BOARD -->
+            </div>
 
-                <div id="board" class="board"></div>
-
-
-                <!-- BOARD MESSAGE -->
-
-                <div id="message" class="message hidden">
-                    <div class="message-icon">♛</div>
-
-                    <div>
-                        <h3 id="messageTitle">
-                            Checkmate
-                        </h3>
-
-                        <p id="messageText">
-                            White wins the game.
-                        </p>
-                    </div>
-
-                    <button id="playAgainBtn">
-                        Play Again
-                    </button>
-                </div>
+        </div>
 
 
-                <!-- MOVE HISTORY -->
+        <!-- TIMER -->
 
-                <div class="history-panel">
+        <div class="setting-row timer-setting">
 
-                    <div class="history-header">
-                        <h3>Move History</h3>
+            <div class="setting-title">
+                <span>GAME TIMER</span>
+                <strong id="timerLabel">5 Min</strong>
+            </div>
 
-                        <span id="moveCount">
-                            0 moves
-                        </span>
-                    </div>
+            <div class="button-group timer-buttons">
 
-                    <div id="moveHistory" class="move-history">
-                        <div class="empty-history">
-                            No moves yet
-                        </div>
-                    </div>
+                <button class="timer-btn" data-time="60">
+                    1m
+                </button>
 
-                </div>
+                <button class="timer-btn" data-time="180">
+                    3m
+                </button>
 
-            </section>
+                <button class="timer-btn active" data-time="300">
+                    5m
+                </button>
 
+                <button class="timer-btn" data-time="600">
+                    10m
+                </button>
 
-            <!-- RIGHT PLAYER -->
+            </div>
 
-            <section class="player-card white-player">
+        </div>
 
-                <div class="player-avatar white-avatar">
-                    ♔
-                </div>
-
-                <div class="player-info">
-                    <span>WHITE</span>
-                    <strong id="whiteStatus">Your Turn</strong>
-                </div>
-
-            </section>
-
-        </main>
+    </section>
 
 
-        <footer>
-            <span>Chess V1</span>
-            <span>Local 2 Player</span>
-        </footer>
+    <!-- BLACK / BOT -->
+
+    <section class="player-card">
+
+        <div class="player-left">
+
+            <div class="player-avatar black-avatar">
+                ♚
+            </div>
+
+            <div class="player-info">
+                <span>COMPUTER</span>
+                <strong id="blackStatus">
+                    Hard Bot
+                </strong>
+            </div>
+
+        </div>
+
+        <div
+            id="blackTimer"
+            class="player-timer"
+        >
+            05:00
+        </div>
+
+    </section>
+
+
+    <!-- GAME HEADER -->
+
+    <div class="game-header">
+
+        <div>
+
+            <span class="game-label">
+                VS COMPUTER
+            </span>
+
+            <h2 id="turnText">
+                Your Turn
+            </h2>
+
+        </div>
+
+        <div
+            id="statusBadge"
+            class="status-badge"
+        >
+            PLAYING
+        </div>
 
     </div>
 
 
-    <script src="chess.js"></script>
+    <!-- BOARD -->
+
+    <div
+        id="board"
+        class="board"
+    ></div>
+
+
+    <!-- CAPTURED PIECES -->
+
+    <section class="captured-panel">
+
+        <div class="captured-row">
+
+            <div class="captured-label">
+                You captured
+            </div>
+
+            <div
+                id="whiteCaptured"
+                class="captured-pieces"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <div class="captured-row">
+
+            <div class="captured-label">
+                Bot captured
+            </div>
+
+            <div
+                id="blackCaptured"
+                class="captured-pieces"
+            >
+                —
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHITE / PLAYER -->
+
+    <section class="player-card white-card">
+
+        <div class="player-left">
+
+            <div class="player-avatar white-avatar">
+                ♔
+            </div>
+
+            <div class="player-info">
+                <span>YOU</span>
+                <strong id="whiteStatus">
+                    Your Turn
+                </strong>
+            </div>
+
+        </div>
+
+        <div
+            id="whiteTimer"
+            class="player-timer active-timer"
+        >
+            05:00
+        </div>
+
+    </section>
+
+
+    <!-- MESSAGE -->
+
+    <section
+        id="message"
+        class="message hidden"
+    >
+
+        <div class="message-icon">
+            ♛
+        </div>
+
+        <div class="message-text">
+
+            <h3 id="messageTitle">
+                Checkmate
+            </h3>
+
+            <p id="messageText">
+                You win.
+            </p>
+
+        </div>
+
+        <button id="playAgainBtn">
+            Play Again
+        </button>
+
+    </section>
+
+
+    <!-- HISTORY -->
+
+    <section class="history-panel">
+
+        <div class="history-header">
+
+            <h3>Move History</h3>
+
+            <span id="moveCount">
+                0 moves
+            </span>
+
+        </div>
+
+        <div
+            id="moveHistory"
+            class="move-history"
+        >
+
+            <div class="empty-history">
+                No moves yet
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        Checkora • Chess vs Bot
+    </footer>
+
+</div>
+
+
+<!-- PROMOTION -->
+
+<div
+    id="promotionOverlay"
+    class="promotion-overlay hidden"
+>
+
+    <div class="promotion-box">
+
+        <h2>Pawn Promotion</h2>
+
+        <p>
+            Choose your new piece
+        </p>
+
+        <div class="promotion-options">
+
+            <button
+                class="promotion-choice"
+                data-piece="queen"
+            >
+                <span>♕</span>
+                <small>Queen</small>
+            </button>
+
+            <button
+                class="promotion-choice"
+                data-piece="rook"
+            >
+                <span>♖</span>
+                <small>Rook</small>
+            </button>
+
+            <button
+                class="promotion-choice"
+                data-piece="bishop"
+            >
+                <span>♗</span>
+                <small>Bishop</small>
+            </button>
+
+            <button
+                class="promotion-choice"
+                data-piece="knight"
+            >
+                <span>♘</span>
+                <small>Knight</small>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="chess.js"></script>
 
 </body>
 </html>
