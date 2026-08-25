@@ -1,0 +1,1017 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --bg: #0d1117;
+    --panel: #151b23;
+    --panel-light: #1c2430;
+    --border: #273241;
+
+    --text: #f5f7fa;
+    --muted: #8994a3;
+
+    --light-square: #e8d8b8;
+    --dark-square: #769656;
+
+    --accent: #d6a84f;
+    --danger: #e05252;
+
+    --shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =====================================================
+   BASE
+   ===================================================== */
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #17202c 0%,
+            #0d1117 45%,
+            #090c10 100%
+        );
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    overflow-x: hidden;
+
+    touch-action: manipulation;
+}
+
+
+/* =====================================================
+   APP
+   ===================================================== */
+
+.app {
+    width: 100%;
+
+    max-width: 480px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        max(10px, env(safe-area-inset-top))
+        10px
+        max(14px, env(safe-area-inset-bottom))
+        10px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.topbar {
+    width: 100%;
+
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    background: #202936;
+
+    border: 1px solid var(--border);
+
+    font-size: 23px;
+}
+
+
+.brand h1 {
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    line-height: 1;
+}
+
+
+.brand p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+.new-game-btn {
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    border: 1px solid #3a4656;
+
+    background: #1b2430;
+
+    color: white;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    touch-action: manipulation;
+}
+
+.new-game-btn:active {
+    transform: scale(0.96);
+
+    background: #263241;
+}
+
+
+/* =====================================================
+   GAME LAYOUT
+   ===================================================== */
+
+.game-layout {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    align-items: stretch;
+}
+
+
+/* =====================================================
+   PLAYER CARDS
+   ===================================================== */
+
+.player-card {
+    width: 100%;
+
+    min-height: 48px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 7px 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/*
+    Mobile order:
+
+    BLACK
+       ↓
+    GAME
+       ↓
+    WHITE
+*/
+
+.black-player {
+    order: 1;
+
+    margin-bottom: 8px;
+}
+
+
+.game-area {
+    order: 2;
+}
+
+
+.white-player {
+    order: 3;
+
+    margin-top: 10px;
+}
+
+
+.player-avatar {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 21px;
+}
+
+
+.black-avatar {
+    background: #252b33;
+}
+
+
+.white-avatar {
+    background: #eee7d9;
+
+    color: #222;
+}
+
+
+.player-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.player-info span {
+    font-size: 9px;
+
+    color: var(--muted);
+
+    letter-spacing: 1.3px;
+
+    font-weight: 700;
+}
+
+
+.player-info strong {
+    font-size: 11px;
+
+    color: var(--text);
+}
+
+
+/* =====================================================
+   GAME AREA
+   ===================================================== */
+
+.game-area {
+    width: 100%;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   GAME HEADER
+   ===================================================== */
+
+.game-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+
+.game-label {
+    color: var(--muted);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 800;
+}
+
+
+.game-header h2 {
+    margin-top: 3px;
+
+    font-size: 16px;
+
+    font-weight: 650;
+
+    line-height: 1.1;
+}
+
+
+.status-badge {
+    padding: 6px 9px;
+
+    border-radius: 6px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+    background: #173a27;
+
+    color: #75d99b;
+}
+
+
+/* =====================================================
+   CHESS BOARD
+   ===================================================== */
+
+.board {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(8, 1fr);
+
+    grid-template-rows:
+        repeat(8, 1fr);
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.55);
+
+    border: 3px solid #222b35;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    touch-action: manipulation;
+}
+
+
+/* =====================================================
+   SQUARE
+   ===================================================== */
+
+.square {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    touch-action: manipulation;
+}
+
+
+.light {
+    background: var(--light-square);
+}
+
+
+.dark {
+    background: var(--dark-square);
+}
+
+
+/* =====================================================
+   PIECES
+   ===================================================== */
+
+.piece {
+    font-family:
+        "Segoe UI Symbol",
+        "Noto Sans Symbols 2",
+        sans-serif;
+
+    /*
+       Piece size is based on board width.
+       This makes pieces large on mobile.
+    */
+
+    font-size: clamp(
+        31px,
+        12vw,
+        56px
+    );
+
+    line-height: 1;
+
+    position: relative;
+
+    z-index: 2;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    transition:
+        transform 0.1s ease;
+}
+
+
+.square:active .piece {
+    transform: scale(0.92);
+}
+
+
+/* =====================================================
+   WHITE PIECES
+   ===================================================== */
+
+.white-piece {
+    color: #fffdf5;
+
+    text-shadow:
+        0 2px 1px rgba(0, 0, 0, 0.75),
+        0 4px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =====================================================
+   BLACK PIECES
+   ===================================================== */
+
+.black-piece {
+    color: #16191d;
+
+    text-shadow:
+        0 1px 1px rgba(255, 255, 255, 0.25),
+        0 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =====================================================
+   SELECTED
+   ===================================================== */
+
+.selected {
+    box-shadow:
+        inset 0 0 0 4px
+        rgba(214, 168, 79, 0.9);
+}
+
+
+/* =====================================================
+   LEGAL MOVE
+   ===================================================== */
+
+.legal-move::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18%;
+    height: 18%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(20, 25, 20, 0.38);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CAPTURE MOVE
+   ===================================================== */
+
+.capture-move {
+    box-shadow:
+        inset 0 0 0 4px
+        rgba(210, 70, 60, 0.65);
+}
+
+
+/* =====================================================
+   CHECK
+   ===================================================== */
+
+.in-check {
+    background:
+        radial-gradient(
+            circle,
+            rgba(230, 70, 60, 0.9),
+            transparent 70%
+        ) !important;
+}
+
+
+/* =====================================================
+   BOARD COORDINATES
+   ===================================================== */
+
+.coordinate {
+    position: absolute;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    opacity: 0.65;
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+.rank {
+    top: 3px;
+
+    left: 4px;
+}
+
+
+.file {
+    right: 4px;
+
+    bottom: 3px;
+}
+
+
+/* =====================================================
+   GAME MESSAGE
+   ===================================================== */
+
+.message {
+    width: 100%;
+
+    margin-top: 10px;
+
+    background: #181f28;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    flex-wrap: wrap;
+}
+
+
+.message-icon {
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #282f38;
+
+    border-radius: 9px;
+
+    font-size: 19px;
+}
+
+
+.message h3 {
+    font-size: 12px;
+}
+
+
+.message p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+
+.message button {
+    width: 100%;
+
+    border: 0;
+
+    background: var(--accent);
+
+    color: #17120a;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    font-weight: 800;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+
+.message button:active {
+    transform: scale(0.98);
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* =====================================================
+   MOVE HISTORY
+   ===================================================== */
+
+.history-panel {
+    width: 100%;
+
+    margin-top: 10px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 11px;
+}
+
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.history-header h3 {
+    font-size: 12px;
+}
+
+
+.history-header span {
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+.move-history {
+    min-height: 38px;
+
+    max-height: 100px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-content: flex-start;
+
+    gap: 5px;
+}
+
+
+.move {
+    background: var(--panel-light);
+
+    border-radius: 6px;
+
+    padding: 5px 7px;
+
+    font-size: 10px;
+
+    color: #d9dee5;
+}
+
+
+.move-number {
+    color: var(--muted);
+
+    margin-right: 3px;
+}
+
+
+.empty-history {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    margin-top: 14px;
+
+    padding-bottom: 4px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #566170;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   320px - 360px
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    .app {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+
+    .topbar {
+        margin-bottom: 9px;
+    }
+
+
+    .brand-icon {
+        width: 37px;
+        height: 37px;
+
+        font-size: 21px;
+    }
+
+
+    .brand h1 {
+        font-size: 15px;
+    }
+
+
+    .brand p {
+        font-size: 9px;
+    }
+
+
+    .new-game-btn {
+        min-height: 35px;
+
+        padding: 0 10px;
+
+        font-size: 10px;
+    }
+
+
+    .player-card {
+        min-height: 44px;
+
+        padding: 6px 8px;
+    }
+
+
+    .player-avatar {
+        width: 31px;
+        height: 31px;
+
+        font-size: 19px;
+    }
+
+
+    .game-header h2 {
+        font-size: 14px;
+    }
+
+
+    .board {
+        border-width: 2px;
+
+        border-radius: 6px;
+    }
+
+
+    .piece {
+        font-size: 11.5vw;
+    }
+
+
+    .coordinate {
+        font-size: 7px;
+    }
+
+}
+
+
+/* =====================================================
+   NORMAL ANDROID
+   361px - 420px
+   ===================================================== */
+
+@media (min-width: 361px) and (max-width: 420px) {
+
+    .piece {
+        font-size: 11.5vw;
+    }
+
+}
+
+
+/* =====================================================
+   TALL PHONES
+   ===================================================== */
+
+@media (min-height: 750px) and (max-width: 600px) {
+
+    .topbar {
+        margin-bottom: 13px;
+    }
+
+
+    .black-player {
+        margin-bottom: 9px;
+    }
+
+
+    .white-player {
+        margin-top: 11px;
+    }
+
+
+    .history-panel {
+        margin-top: 12px;
+    }
+
+}
+
+
+/* =====================================================
+   LANDSCAPE MOBILE
+   ===================================================== */
+
+@media (
+    orientation: landscape
+) and (
+    max-height: 520px
+) {
+
+    .app {
+        max-width: 760px;
+
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+
+    .topbar {
+        min-height: 40px;
+
+        margin-bottom: 6px;
+    }
+
+
+    .player-card {
+        min-height: 38px;
+    }
+
+
+    .player-avatar {
+        width: 28px;
+        height: 28px;
+
+        font-size: 17px;
+    }
+
+
+    .game-header {
+        margin-bottom: 5px;
+    }
+
+
+    .history-panel,
+    footer {
+        display: none;
+    }
+
+
+    .board {
+        width: min(
+            92vw,
+            calc(100vh - 105px)
+        );
+
+        margin: 0 auto;
+    }
+
+}
+
+
+/* =====================================================
+   ANDROID TOUCH OPTIMIZATION
+   ===================================================== */
+
+button,
+.square,
+.piece {
+    -webkit-touch-callout: none;
+}
+
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+button:focus {
+    outline: none;
+}
+
+
+/* =====================================================
+   REMOVE SCROLLBAR
+   ===================================================== */
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

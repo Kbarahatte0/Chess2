@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chess V1</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">♟</div>
+
+                <div>
+                    <h1>CHESS</h1>
+                    <p>Two Player</p>
+                </div>
+            </div>
+
+            <button id="newGameBtn" class="new-game-btn">
+                New Game
+            </button>
+        </header>
+
+
+        <main class="game-layout">
+
+            <!-- LEFT PLAYER -->
+
+            <section class="player-card black-player">
+
+                <div class="player-avatar black-avatar">
+                    ♚
+                </div>
+
+                <div class="player-info">
+                    <span>BLACK</span>
+                    <strong id="blackStatus">Your Turn</strong>
+                </div>
+
+            </section>
+
+
+            <!-- GAME AREA -->
+
+            <section class="game-area">
+
+                <div class="game-header">
+
+                    <div>
+                        <span class="game-label">LOCAL GAME</span>
+
+                        <h2 id="turnText">
+                            White's Turn
+                        </h2>
+                    </div>
+
+                    <div id="statusBadge" class="status-badge">
+                        PLAYING
+                    </div>
+
+                </div>
+
+
+                <!-- CHESS BOARD -->
+
+                <div id="board" class="board"></div>
+
+
+                <!-- BOARD MESSAGE -->
+
+                <div id="message" class="message hidden">
+                    <div class="message-icon">♛</div>
+
+                    <div>
+                        <h3 id="messageTitle">
+                            Checkmate
+                        </h3>
+
+                        <p id="messageText">
+                            White wins the game.
+                        </p>
+                    </div>
+
+                    <button id="playAgainBtn">
+                        Play Again
+                    </button>
+                </div>
+
+
+                <!-- MOVE HISTORY -->
+
+                <div class="history-panel">
+
+                    <div class="history-header">
+                        <h3>Move History</h3>
+
+                        <span id="moveCount">
+                            0 moves
+                        </span>
+                    </div>
+
+                    <div id="moveHistory" class="move-history">
+                        <div class="empty-history">
+                            No moves yet
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT PLAYER -->
+
+            <section class="player-card white-player">
+
+                <div class="player-avatar white-avatar">
+                    ♔
+                </div>
+
+                <div class="player-info">
+                    <span>WHITE</span>
+                    <strong id="whiteStatus">Your Turn</strong>
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            <span>Chess V1</span>
+            <span>Local 2 Player</span>
+        </footer>
+
+    </div>
+
+
+    <script src="chess.js"></script>
+
+</body>
+</html>
