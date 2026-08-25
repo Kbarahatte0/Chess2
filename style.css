@@ -2,13 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
     -webkit-tap-highlight-color: transparent;
 }
 
 :root {
     --bg: #0d1117;
     --panel: #151b23;
-    --panel-light: #1c2430;
+    --panel2: #1c2430;
     --border: #273241;
 
     --text: #f5f7fa;
@@ -18,24 +19,21 @@
     --dark-square: #769656;
 
     --accent: #d6a84f;
-    --danger: #e05252;
 
-    --shadow:
-        0 15px 40px rgba(0, 0, 0, 0.35);
+    --green: #75d99b;
+    --danger: #ff7474;
 }
 
 
-/* =====================================================
-   BASE
-   ===================================================== */
+/* BODY */
 
-html {
+html,
+body {
     width: 100%;
     min-height: 100%;
 }
 
 body {
-    width: 100%;
     min-height: 100vh;
 
     background:
@@ -57,54 +55,56 @@ body {
         sans-serif;
 
     overflow-x: hidden;
-
-    touch-action: manipulation;
 }
 
 
-/* =====================================================
-   APP
-   ===================================================== */
+button {
+    font-family: inherit;
+
+    cursor: pointer;
+
+    border: 0;
+
+    touch-action: manipulation;
+
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+/* APP */
 
 .app {
     width: 100%;
-
     max-width: 480px;
 
     min-height: 100vh;
 
-    margin: 0 auto;
+    margin: auto;
 
     padding:
         max(10px, env(safe-area-inset-top))
         10px
-        max(14px, env(safe-area-inset-bottom))
+        max(15px, env(safe-area-inset-bottom))
         10px;
 }
 
 
-/* =====================================================
-   HEADER
-   ===================================================== */
+/* HEADER */
 
 .topbar {
-    width: 100%;
-
     min-height: 52px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 
 .brand {
     display: flex;
-
     align-items: center;
 
     gap: 9px;
@@ -116,34 +116,30 @@ body {
     height: 40px;
 
     display: grid;
-
     place-items: center;
 
+    border: 1px solid var(--border);
     border-radius: 11px;
 
     background: #202936;
-
-    border: 1px solid var(--border);
 
     font-size: 23px;
 }
 
 
 .brand h1 {
-    font-size: 17px;
+    font-size: 16px;
 
-    letter-spacing: 2px;
-
-    line-height: 1;
+    letter-spacing: 1.7px;
 }
 
 
 .brand p {
+    margin-top: 3px;
+
     color: var(--muted);
 
     font-size: 10px;
-
-    margin-top: 4px;
 }
 
 
@@ -153,117 +149,172 @@ body {
     padding: 0 13px;
 
     border: 1px solid #3a4656;
+    border-radius: 9px;
 
     background: #1b2430;
 
-    color: white;
-
-    border-radius: 9px;
+    color: #fff;
 
     font-size: 11px;
-
     font-weight: 700;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
-    touch-action: manipulation;
 }
+
 
 .new-game-btn:active {
-    transform: scale(0.96);
-
-    background: #263241;
+    transform: scale(.95);
 }
 
 
-/* =====================================================
-   GAME LAYOUT
-   ===================================================== */
+/* SETTINGS */
 
-.game-layout {
-    width: 100%;
+.settings-card {
+    padding: 9px;
 
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0;
-
-    align-items: stretch;
-}
-
-
-/* =====================================================
-   PLAYER CARDS
-   ===================================================== */
-
-.player-card {
-    width: 100%;
-
-    min-height: 48px;
-
-    background: var(--panel);
+    margin-bottom: 10px;
 
     border: 1px solid var(--border);
-
     border-radius: 12px;
+
+    background: var(--panel);
+}
+
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+
+.timer-setting {
+    margin-top: 8px;
+
+    padding-top: 8px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.setting-title {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 68px;
+
+    gap: 2px;
+}
+
+
+.setting-title span {
+    color: var(--muted);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.setting-title strong {
+    font-size: 11px;
+}
+
+
+.button-group {
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.difficulty-btn,
+.timer-btn {
+    height: 30px;
+
+    min-width: 52px;
+
+    padding: 0 7px;
+
+    border: 1px solid #303b49;
+    border-radius: 7px;
+
+    background: var(--panel2);
+
+    color: #929dab;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+.timer-btn {
+    min-width: 39px;
+}
+
+
+.difficulty-btn.active,
+.timer-btn.active {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: #17120a;
+}
+
+
+.difficulty-btn:active,
+.timer-btn:active {
+    transform: scale(.94);
+}
+
+
+/* PLAYER */
+
+.player-card {
+    min-height: 52px;
 
     padding: 7px 10px;
 
     display: flex;
-
     align-items: center;
+    justify-content: space-between;
 
-    gap: 9px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
 
-    box-shadow: var(--shadow);
+    background: var(--panel);
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, .22);
 }
 
 
-/*
-    Mobile order:
-
-    BLACK
-       ↓
-    GAME
-       ↓
-    WHITE
-*/
-
-.black-player {
-    order: 1;
-
-    margin-bottom: 8px;
-}
-
-
-.game-area {
-    order: 2;
-}
-
-
-.white-player {
-    order: 3;
-
+.white-card {
     margin-top: 10px;
 }
 
 
-.player-avatar {
-    width: 34px;
-    height: 34px;
+.player-left {
+    display: flex;
+    align-items: center;
 
-    flex-shrink: 0;
+    gap: 9px;
+}
+
+
+.player-avatar {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
 
     border-radius: 9px;
 
-    display: grid;
-
-    place-items: center;
-
-    font-size: 21px;
+    font-size: 22px;
 }
 
 
@@ -281,7 +332,6 @@ body {
 
 .player-info {
     display: flex;
-
     flex-direction: column;
 
     gap: 2px;
@@ -289,48 +339,71 @@ body {
 
 
 .player-info span {
-    font-size: 9px;
-
     color: var(--muted);
 
-    letter-spacing: 1.3px;
-
+    font-size: 8px;
     font-weight: 700;
+
+    letter-spacing: 1.3px;
 }
 
 
 .player-info strong {
     font-size: 11px;
-
-    color: var(--text);
 }
 
 
-/* =====================================================
-   GAME AREA
-   ===================================================== */
+/* TIMER */
 
-.game-area {
-    width: 100%;
+.player-timer {
+    min-width: 67px;
 
-    position: relative;
+    padding: 7px 9px;
+
+    border-radius: 8px;
+
+    background: #0d1218;
+
+    border: 1px solid #293440;
+
+    color: #aeb7c2;
+
+    font-size: 17px;
+    font-weight: 750;
+
+    text-align: center;
+
+    font-variant-numeric:
+        tabular-nums;
 }
 
 
-/* =====================================================
-   GAME HEADER
-   ===================================================== */
+.active-timer {
+    background: #1d2d22;
+
+    color: #91e5ad;
+
+    border-color: #315c40;
+}
+
+
+.timer-danger {
+    background: #3a2020 !important;
+
+    border-color: #6a3030 !important;
+
+    color: #ff8585 !important;
+}
+
+
+/* GAME HEADER */
 
 .game-header {
-    width: 100%;
+    margin: 9px 0 7px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    margin-bottom: 8px;
 }
 
 
@@ -338,10 +411,9 @@ body {
     color: var(--muted);
 
     font-size: 8px;
-
-    letter-spacing: 1.5px;
-
     font-weight: 800;
+
+    letter-spacing: 1.4px;
 }
 
 
@@ -349,10 +421,6 @@ body {
     margin-top: 3px;
 
     font-size: 16px;
-
-    font-weight: 650;
-
-    line-height: 1.1;
 }
 
 
@@ -361,21 +429,18 @@ body {
 
     border-radius: 6px;
 
-    font-size: 8px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.9px;
-
     background: #173a27;
 
-    color: #75d99b;
+    color: var(--green);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: .9px;
 }
 
 
-/* =====================================================
-   CHESS BOARD
-   ===================================================== */
+/* BOARD */
 
 .board {
     width: 100%;
@@ -390,43 +455,28 @@ body {
     grid-template-rows:
         repeat(8, 1fr);
 
-    border-radius: 7px;
-
     overflow: hidden;
 
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.55);
-
     border: 3px solid #222b35;
+    border-radius: 7px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, .55);
 
     user-select: none;
-
     -webkit-user-select: none;
 
     touch-action: manipulation;
 }
 
 
-/* =====================================================
-   SQUARE
-   ===================================================== */
-
 .square {
     position: relative;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    cursor: pointer;
-
-    user-select: none;
-
-    -webkit-user-select: none;
-
-    touch-action: manipulation;
 }
 
 
@@ -440,89 +490,57 @@ body {
 }
 
 
-/* =====================================================
-   PIECES
-   ===================================================== */
+/* PIECES */
 
 .piece {
+    position: relative;
+
+    z-index: 2;
+
     font-family:
         "Segoe UI Symbol",
         "Noto Sans Symbols 2",
         sans-serif;
 
-    /*
-       Piece size is based on board width.
-       This makes pieces large on mobile.
-    */
-
-    font-size: clamp(
-        31px,
-        12vw,
-        56px
-    );
+    font-size:
+        clamp(
+            31px,
+            11.5vw,
+            56px
+        );
 
     line-height: 1;
 
-    position: relative;
-
-    z-index: 2;
-
-    cursor: pointer;
-
     user-select: none;
-
-    -webkit-user-select: none;
-
-    transition:
-        transform 0.1s ease;
 }
 
-
-.square:active .piece {
-    transform: scale(0.92);
-}
-
-
-/* =====================================================
-   WHITE PIECES
-   ===================================================== */
 
 .white-piece {
     color: #fffdf5;
 
     text-shadow:
-        0 2px 1px rgba(0, 0, 0, 0.75),
-        0 4px 5px rgba(0, 0, 0, 0.35);
+        0 2px 1px rgba(0,0,0,.75),
+        0 4px 5px rgba(0,0,0,.35);
 }
 
-
-/* =====================================================
-   BLACK PIECES
-   ===================================================== */
 
 .black-piece {
     color: #16191d;
 
     text-shadow:
-        0 1px 1px rgba(255, 255, 255, 0.25),
-        0 3px 4px rgba(0, 0, 0, 0.4);
+        0 1px 1px rgba(255,255,255,.25),
+        0 3px 4px rgba(0,0,0,.4);
 }
 
 
-/* =====================================================
-   SELECTED
-   ===================================================== */
+/* MOVE EFFECTS */
 
 .selected {
     box-shadow:
         inset 0 0 0 4px
-        rgba(214, 168, 79, 0.9);
+        rgba(214,168,79,.9);
 }
 
-
-/* =====================================================
-   LEGAL MOVE
-   ===================================================== */
 
 .legal-move::after {
     content: "";
@@ -535,187 +553,133 @@ body {
     border-radius: 50%;
 
     background:
-        rgba(20, 25, 20, 0.38);
-
-    pointer-events: none;
+        rgba(20,25,20,.38);
 }
 
-
-/* =====================================================
-   CAPTURE MOVE
-   ===================================================== */
 
 .capture-move {
     box-shadow:
         inset 0 0 0 4px
-        rgba(210, 70, 60, 0.65);
+        rgba(210,70,60,.65);
 }
 
-
-/* =====================================================
-   CHECK
-   ===================================================== */
 
 .in-check {
     background:
         radial-gradient(
             circle,
-            rgba(230, 70, 60, 0.9),
+            rgba(230,70,60,.9),
             transparent 70%
         ) !important;
 }
 
 
-/* =====================================================
-   BOARD COORDINATES
-   ===================================================== */
+/* COORDINATES */
 
 .coordinate {
     position: absolute;
 
-    font-size: 8px;
+    z-index: 3;
 
+    font-size: 8px;
     font-weight: 800;
 
-    opacity: 0.65;
+    opacity: .65;
 
     pointer-events: none;
-
-    z-index: 3;
 }
 
 
 .rank {
     top: 3px;
-
     left: 4px;
 }
 
 
 .file {
     right: 4px;
-
     bottom: 3px;
 }
 
 
-/* =====================================================
-   GAME MESSAGE
-   ===================================================== */
+/* CAPTURED */
 
-.message {
-    width: 100%;
-
+.captured-panel {
     margin-top: 10px;
 
-    background: #181f28;
+    padding: 8px 10px;
 
     border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    padding: 11px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    flex-wrap: wrap;
-}
-
-
-.message-icon {
-    width: 35px;
-    height: 35px;
-
-    flex-shrink: 0;
-
-    display: grid;
-
-    place-items: center;
-
-    background: #282f38;
-
-    border-radius: 9px;
-
-    font-size: 19px;
-}
-
-
-.message h3 {
-    font-size: 12px;
-}
-
-
-.message p {
-    color: var(--muted);
-
-    font-size: 10px;
-
-    margin-top: 2px;
-}
-
-
-.message button {
-    width: 100%;
-
-    border: 0;
-
-    background: var(--accent);
-
-    color: #17120a;
-
-    padding: 10px;
-
-    border-radius: 8px;
-
-    font-weight: 800;
-
-    font-size: 11px;
-
-    cursor: pointer;
-
-    touch-action: manipulation;
-}
-
-
-.message button:active {
-    transform: scale(0.98);
-}
-
-
-.hidden {
-    display: none;
-}
-
-
-/* =====================================================
-   MOVE HISTORY
-   ===================================================== */
-
-.history-panel {
-    width: 100%;
-
-    margin-top: 10px;
+    border-radius: 11px;
 
     background: var(--panel);
+}
 
-    border: 1px solid var(--border);
 
-    border-radius: 12px;
+.captured-row {
+    min-height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.captured-row + .captured-row {
+    margin-top: 3px;
+
+    padding-top: 4px;
+
+    border-top: 1px solid #202a36;
+}
+
+
+.captured-label {
+    min-width: 76px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+.captured-pieces {
+    flex: 1;
+
+    overflow: hidden;
+
+    font-family:
+        "Segoe UI Symbol",
+        sans-serif;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    text-align: right;
+}
+
+
+/* HISTORY */
+
+.history-panel {
+    margin-top: 10px;
 
     padding: 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--panel);
 }
 
 
 .history-header {
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
+    justify-content: space-between;
 
     margin-bottom: 8px;
 }
@@ -734,39 +698,35 @@ body {
 
 
 .move-history {
-    min-height: 38px;
-
+    min-height: 35px;
     max-height: 100px;
 
     overflow-y: auto;
 
     display: flex;
-
     flex-wrap: wrap;
-
-    align-content: flex-start;
 
     gap: 5px;
 }
 
 
 .move {
-    background: var(--panel-light);
+    padding: 5px 7px;
 
     border-radius: 6px;
 
-    padding: 5px 7px;
-
-    font-size: 10px;
+    background: var(--panel2);
 
     color: #d9dee5;
+
+    font-size: 10px;
 }
 
 
 .move-number {
-    color: var(--muted);
-
     margin-right: 3px;
+
+    color: var(--muted);
 }
 
 
@@ -777,31 +737,205 @@ body {
 }
 
 
-/* =====================================================
-   FOOTER
-   ===================================================== */
+/* GAME OVER */
 
-footer {
-    margin-top: 14px;
+.message {
+    margin-top: 10px;
 
-    padding-bottom: 4px;
+    padding: 11px;
 
     display: flex;
+    align-items: center;
 
+    gap: 9px;
+
+    flex-wrap: wrap;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: #181f28;
+}
+
+
+.message-icon {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: #282f38;
+
+    font-size: 19px;
+}
+
+
+.message-text {
+    flex: 1;
+}
+
+
+.message h3 {
+    font-size: 13px;
+}
+
+
+.message p {
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.message button {
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background: var(--accent);
+
+    color: #17120a;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* PROMOTION */
+
+.promotion-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
     justify-content: center;
 
-    gap: 15px;
+    padding: 18px;
 
-    color: #566170;
+    background:
+        rgba(4,7,11,.82);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.promotion-box {
+    width: 100%;
+    max-width: 390px;
+
+    padding: 20px 14px 16px;
+
+    border: 1px solid #303b4a;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1b232e,
+            #11171f
+        );
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.65);
+}
+
+
+.promotion-box h2 {
+    font-size: 18px;
+}
+
+
+.promotion-box p {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.promotion-options {
+    margin-top: 17px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+
+.promotion-choice {
+    min-height: 88px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border: 1px solid #313d4c;
+    border-radius: 13px;
+
+    background: #202936;
+
+    color: white;
+}
+
+
+.promotion-choice span {
+    font-family:
+        "Segoe UI Symbol",
+        sans-serif;
+
+    font-size: 39px;
+}
+
+
+.promotion-choice small {
+    color: #b9c2cd;
 
     font-size: 9px;
 }
 
 
-/* =====================================================
-   SMALL MOBILE
-   320px - 360px
-   ===================================================== */
+.hidden {
+    display: none !important;
+}
+
+
+/* FOOTER */
+
+footer {
+    margin-top: 14px;
+
+    padding-bottom: 5px;
+
+    color: #566170;
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+
+/* SMALL PHONE */
 
 @media (max-width: 360px) {
 
@@ -810,206 +944,26 @@ footer {
         padding-right: 7px;
     }
 
-
-    .topbar {
-        margin-bottom: 9px;
+    .difficulty-btn {
+        min-width: 45px;
     }
 
-
-    .brand-icon {
-        width: 37px;
-        height: 37px;
-
-        font-size: 21px;
+    .timer-btn {
+        min-width: 34px;
     }
 
+    .piece {
+        font-size: 11.2vw;
+    }
 
-    .brand h1 {
+    .player-timer {
+        min-width: 61px;
+
         font-size: 15px;
     }
 
-
-    .brand p {
-        font-size: 9px;
-    }
-
-
-    .new-game-btn {
-        min-height: 35px;
-
-        padding: 0 10px;
-
-        font-size: 10px;
-    }
-
-
-    .player-card {
-        min-height: 44px;
-
-        padding: 6px 8px;
-    }
-
-
-    .player-avatar {
-        width: 31px;
-        height: 31px;
-
-        font-size: 19px;
-    }
-
-
-    .game-header h2 {
-        font-size: 14px;
-    }
-
-
-    .board {
-        border-width: 2px;
-
-        border-radius: 6px;
-    }
-
-
-    .piece {
-        font-size: 11.5vw;
-    }
-
-
-    .coordinate {
-        font-size: 7px;
-    }
-
 }
 
-
-/* =====================================================
-   NORMAL ANDROID
-   361px - 420px
-   ===================================================== */
-
-@media (min-width: 361px) and (max-width: 420px) {
-
-    .piece {
-        font-size: 11.5vw;
-    }
-
-}
-
-
-/* =====================================================
-   TALL PHONES
-   ===================================================== */
-
-@media (min-height: 750px) and (max-width: 600px) {
-
-    .topbar {
-        margin-bottom: 13px;
-    }
-
-
-    .black-player {
-        margin-bottom: 9px;
-    }
-
-
-    .white-player {
-        margin-top: 11px;
-    }
-
-
-    .history-panel {
-        margin-top: 12px;
-    }
-
-}
-
-
-/* =====================================================
-   LANDSCAPE MOBILE
-   ===================================================== */
-
-@media (
-    orientation: landscape
-) and (
-    max-height: 520px
-) {
-
-    .app {
-        max-width: 760px;
-
-        padding-top: 7px;
-        padding-bottom: 7px;
-    }
-
-
-    .topbar {
-        min-height: 40px;
-
-        margin-bottom: 6px;
-    }
-
-
-    .player-card {
-        min-height: 38px;
-    }
-
-
-    .player-avatar {
-        width: 28px;
-        height: 28px;
-
-        font-size: 17px;
-    }
-
-
-    .game-header {
-        margin-bottom: 5px;
-    }
-
-
-    .history-panel,
-    footer {
-        display: none;
-    }
-
-
-    .board {
-        width: min(
-            92vw,
-            calc(100vh - 105px)
-        );
-
-        margin: 0 auto;
-    }
-
-}
-
-
-/* =====================================================
-   ANDROID TOUCH OPTIMIZATION
-   ===================================================== */
-
-button,
-.square,
-.piece {
-    -webkit-touch-callout: none;
-}
-
-
-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-
-button:focus {
-    outline: none;
-}
-
-
-/* =====================================================
-   REMOVE SCROLLBAR
-   ===================================================== */
 
 ::-webkit-scrollbar {
     width: 0;
