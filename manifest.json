@@ -1,17 +1,31 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "Chess V1",
-  "orientation": "portrait",
-  "scope": "/Chess2/",
-  "short_name": "Chess",
-  "start_url": "/Chess2/",
-  "theme_color": "#ffffff",
-  "id": "/chess2/",
+  "id": "/Chess2/",
+  "name": "Checkora",
+  "short_name": "Checkora",
   "description": "Play Chess against a computer opponent.",
+  "start_url": "/Chess2/",
+  "scope": "/Chess2/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "dir": "ltr",
   "lang": "en",
   "categories": [
     "games"
+  ],
+  "icons": [
+    {
+      "src": "launchericon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "launchericon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
